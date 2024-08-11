@@ -5,3 +5,5 @@ logs/
 .idea/
 *.log
 output.json
+accounts.csv
+.*exe
