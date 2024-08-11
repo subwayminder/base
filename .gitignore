@@ -1,0 +1,7 @@
+base
+*.exe
+.env
+logs/
+.idea/
+*.log
+output.json
