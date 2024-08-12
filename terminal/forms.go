@@ -2,7 +2,11 @@ package terminal
 
 import (
 	"base/helpers"
+	"fmt"
 	"github.com/rivo/tview"
+	"math"
+	"os"
+	"strconv"
 )
 
 func ChooseModule(dataset *helpers.AppDataset, modules []helpers.ModuleList) {
@@ -27,24 +31,50 @@ func ChooseModule(dataset *helpers.AppDataset, modules []helpers.ModuleList) {
 
 func ChooseModulesForm(dataset *helpers.AppDataset, modules []helpers.ModuleList) {
 	app := tview.NewApplication()
-	form := tview.NewForm()
-
-	for i, module := range modules {
-		form.AddCheckbox(module.Title, false, func(checked bool) {
-			if checked {
-				dataset.Modules[i] = module.Module
-			} else {
-				delete(dataset.Modules, i)
+	pages := tview.NewPages()
+	pageCount := int(math.Ceil(float64(len(modules)/10))) + 1
+	for i := 1; i <= pageCount; i++ {
+		form := tview.NewForm()
+		k := 0
+		for j, module := range modules {
+			k++
+			form.AddCheckbox(module.Title, false, func(checked bool) {
+				if checked {
+					dataset.Modules[j] = module.Module
+				} else {
+					delete(dataset.Modules, j)
+				}
+			})
+			if k >= 10 {
+				modules = modules[j+1:]
+				break
 			}
-		})
-	}
-	form.
-		AddButton("Continue", func() {
+		}
+		form.SetTitle(fmt.Sprintf("Choose module [Page %s/%s]", strconv.Itoa(i), strconv.Itoa(pageCount))).
+			SetBorder(true)
+
+		if i != 1 {
+			form.AddButton("<", func() {
+				pages.SwitchToPage(strconv.Itoa(i - 1))
+			})
+		}
+		if i != pageCount {
+			form.AddButton(">", func() {
+				pages.SwitchToPage(strconv.Itoa(i + 1))
+			})
+		}
+		form.AddButton("Run", func() {
 			app.Stop()
 		})
-
-	form.SetBorder(true).SetTitle("Choose modules").SetTitleAlign(tview.AlignLeft)
-	if err := app.SetRoot(form, true).EnableMouse(true).Run(); err != nil {
+		form.AddButton("Exit", func() {
+			defer os.Exit(0)
+			app.Stop()
+		})
+		pages.AddPage(strconv.Itoa(i), form, true, true)
+	}
+	pages.SwitchToPage("1")
+	pages.SetTitle("Choose modules").SetTitleAlign(tview.AlignCenter)
+	if err := app.SetRoot(pages, true).EnableMouse(true).Run(); err != nil {
 		panic(err)
 	}
 }
