@@ -3,6 +3,7 @@ package main
 import (
 	"base/account"
 	_ "base/account"
+	"base/contracts/coinbaseforge"
 	"base/contracts/coinbaseone"
 	"base/contracts/olympic"
 	ser "base/contracts/seasonal_erosion_relic"
@@ -199,6 +200,18 @@ func main() {
 		{
 			Title:  "Mint Zora - Memloop",
 			Module: zorasecond.MintMemloop,
+		},
+		{
+			Title:  "Mint Coinbase - Nouns summer",
+			Module: coinbaseforge.MintNounsSummer,
+		},
+		{
+			Title:  "Mint Coinbase - Walking On Sunshine",
+			Module: coinbaseforge.MintWalkingOnSunshine,
+		},
+		{
+			Title:  "Mint Coinbase - Consolation of Chroma Convergence",
+			Module: coinbaseforge.MintConsolationOfChromaConvergence,
 		},
 	}
 
