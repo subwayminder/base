@@ -7,3 +7,4 @@ logs/
 output.json
 accounts.csv
 .*exe
+/base-arm64
