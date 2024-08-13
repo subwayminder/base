@@ -38,11 +38,12 @@ func ChooseModulesForm(dataset *helpers.AppDataset, modules []helpers.ModuleList
 		k := 0
 		for j, module := range modules {
 			k++
+			index := (i-1)*10 + k
 			form.AddCheckbox(module.Title, false, func(checked bool) {
 				if checked {
-					dataset.Modules[j] = module.Module
+					dataset.Modules[index] = module.Module
 				} else {
-					delete(dataset.Modules, j)
+					delete(dataset.Modules, index)
 				}
 			})
 			if k >= 10 {
