@@ -37,7 +37,7 @@ func Mint(account *account.Account, contractAddress string, value int) {
 		txData := account.TxData(int64(value))
 		tx, err := instance.MintWithComment(txData, account.Address(), big.NewInt(1), "")
 		if err != nil {
-			log.Fatal(err)
+			panic(fmt.Sprintf("Mint error - %s", err))
 		}
 		log.Printf("[%s] [%s] Tx is sent: %s", strconv.Itoa(account.Id), account.Address(), tx.Hash().Hex())
 	} else {

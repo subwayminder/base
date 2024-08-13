@@ -35,24 +35,16 @@ func ChooseModulesForm(dataset *helpers.AppDataset, modules []helpers.ModuleList
 	pageCount := int(math.Ceil(float64(len(modules)/10))) + 1
 	for i := 1; i <= pageCount; i++ {
 		form := tview.NewForm()
-		k := 0
-		for j, module := range modules {
-			k++
-			form.AddCheckbox(module.Title, false, func(checked bool) {
-				if checked {
-					dataset.Modules[j] = module.Module
-				} else {
-					delete(dataset.Modules, j)
-				}
-			})
-			if k >= 10 {
-				modules = modules[j+1:]
-				break
-			}
+		offsetStart := (i - 1) * 10
+		var offsetEnd int
+		if i*10 < len(modules) {
+			offsetEnd = i * 10
+		} else {
+			offsetEnd = len(modules)
 		}
+		addOptionsToForm(form, modules[offsetStart:offsetEnd], dataset)
 		form.SetTitle(fmt.Sprintf("Choose module [Page %s/%s]", strconv.Itoa(i), strconv.Itoa(pageCount))).
 			SetBorder(true)
-
 		if i != 1 {
 			form.AddButton("<", func() {
 				pages.SwitchToPage(strconv.Itoa(i - 1))
@@ -76,5 +68,17 @@ func ChooseModulesForm(dataset *helpers.AppDataset, modules []helpers.ModuleList
 	pages.SetTitle("Choose modules").SetTitleAlign(tview.AlignCenter)
 	if err := app.SetRoot(pages, true).EnableMouse(true).Run(); err != nil {
 		panic(err)
+	}
+}
+
+func addOptionsToForm(form *tview.Form, modules []helpers.ModuleList, dataset *helpers.AppDataset) {
+	for j, module := range modules {
+		form.AddCheckbox(module.Title, false, func(checked bool) {
+			if checked {
+				dataset.Modules[j] = module.Module
+			} else {
+				delete(dataset.Modules, j)
+			}
+		})
 	}
 }
