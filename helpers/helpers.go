@@ -93,14 +93,15 @@ func LoadAccounts(filename string, rpc string) (accounts []accpkg.Account) {
 
 func RunAccountsModules(dataset AppDataset, accounts []accpkg.Account) {
 	var wg sync.WaitGroup
-	for _, account := range accounts {
+	for k, account := range accounts {
 		if !account.Active {
 			continue
 		}
-		if dataset.MinSleepInSeconds > 0 {
+		if dataset.MinSleepInSeconds > 0 && k != 0 {
 			time.Sleep(
 				time.Duration(
-					rand.Intn(dataset.MaxSleepInSeconds-dataset.MinSleepInSeconds)+dataset.MinSleepInSeconds) * time.Second)
+					rand.Intn(dataset.MaxSleepInSeconds-dataset.MinSleepInSeconds)+dataset.MinSleepInSeconds) * time.Second,
+			)
 		}
 		log.Printf("[%s] [%s] Account started", strconv.Itoa(account.Id), account.Address())
 		wg.Add(1)
@@ -116,7 +117,10 @@ func RunAccountModules(dataset AppDataset, account accpkg.Account, accountWg *sy
 	}
 	for _, module := range dataset.Modules {
 		if dataset.MinModuleSleepInSeconds > 0 {
-			time.Sleep(time.Duration(rand.Intn(dataset.MaxModuleSleepInSeconds-dataset.MinModuleSleepInSeconds)+dataset.MinModuleSleepInSeconds) * time.Second)
+			time.Sleep(time.Duration(
+				rand.Intn(
+					dataset.MaxModuleSleepInSeconds-dataset.MinModuleSleepInSeconds)+dataset.MinModuleSleepInSeconds) *
+				time.Second)
 		}
 		log.Printf("[%s] [%s] - %s started",
 			strconv.Itoa(account.Id), account.Address(),

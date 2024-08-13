@@ -90,11 +90,11 @@ func MintCelebratingNonce(account *account.Account) {
 }
 
 func MintCoffeeDays(account *account.Account) {
-	Mint(account, "0xf16755b43eE1a458161f0faE5a9124729f4f6B1B", 100000000000000)
+	Mint(account, "0xf16755b43eE1a458161f0faE5a9124729f4f6B1B", 600000000000000)
 }
 
 func MintNounMoon(account *account.Account) {
-	Mint(account, "0x92440f15451f1058237a83B2fD64C67110C5146B", 600000000000000)
+	Mint(account, "0x92440f15451f1058237a83B2fD64C67110C5146B", 100000000000000)
 }
 
 func MintHappyBornDay(account *account.Account) {
