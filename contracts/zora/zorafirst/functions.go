@@ -55,11 +55,11 @@ func BalanceOf(account *account.Account, collectionAddress string, tokenId int) 
 	return balanceResponseBody.Balance
 }
 
-func Mint(account *account.Account, contractAddress string, collectionAddress string, tokenId int) {
+func Mint(account *account.Account, contractAddress string, collectionAddress string, value int, tokenId int, minterReferal string, comment string) {
 	instance := getInstance(account.Client, contractAddress)
 	balance := BalanceOf(account, collectionAddress, tokenId)
 	if balance == 0 {
-		txData := account.TxData(111000000000000)
+		txData := account.TxData(int64(value))
 		tx, err := instance.Mint(txData,
 			account.Address(),
 			big.NewInt(1),
@@ -81,5 +81,21 @@ func MintOneYearOnBase(account *account.Account) {
 	Mint(account,
 		"0x777777722D078c97c6ad07d9f36801e653E356Ae",
 		"0xb4703a3a73Aec16E764CBd210b0Fde9EFdAB8941",
-		1)
+		111000000000000,
+		1,
+		"0x0000000000000000000000000000000000000000",
+		"",
+	)
+}
+
+func MintEicSummer(account *account.Account) {
+	Mint(
+		account,
+		"0x777777722D078c97c6ad07d9f36801e653E356Ae",
+		"0x9D2FC5fFE5939Efd1d573f975BC5EEFd364779ae",
+		111000000000000,
+		5,
+		"0x55C88bB05602Da94fCe8FEadc1cbebF5B72c2453",
+		"",
+	)
 }
