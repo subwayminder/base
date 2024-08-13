@@ -140,7 +140,3 @@ func MintThirdNouniversary(account *account.Account) {
 func MintHappyNouniversaryTwo(account *account.Account) {
 	Mint(account, "0xE0fE6DD851187c62a79D00a211953Fe3B5Cec7FE", 100000000000000)
 }
-
-func MintEicSummer(account *account.Account) {
-	Mint(account, "0x777777722D078c97c6ad07d9f36801e653E356Ae", 111000000000000)
-}

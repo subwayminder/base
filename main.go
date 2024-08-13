@@ -122,7 +122,7 @@ func main() {
 		},
 		{
 			Title:  "Mint Coinbase - EIC summer",
-			Module: coinbaseone.MintEicSummer,
+			Module: zorafirst.MintEicSummer,
 		},
 		{
 			Title:  "Mint Zora - One Year On Base",
