@@ -118,9 +118,7 @@ func RunAccountModules(dataset AppDataset, account accpkg.Account, accountWg *sy
 	for _, module := range dataset.Modules {
 		if dataset.MinModuleSleepInSeconds > 0 {
 			time.Sleep(time.Duration(
-				rand.Intn(
-					dataset.MaxModuleSleepInSeconds-dataset.MinModuleSleepInSeconds)+dataset.MinModuleSleepInSeconds) *
-				time.Second)
+				rand.Intn(dataset.MaxModuleSleepInSeconds-dataset.MinModuleSleepInSeconds)+dataset.MinModuleSleepInSeconds) * time.Second)
 		}
 		log.Printf("[%s] [%s] - %s started",
 			strconv.Itoa(account.Id), account.Address(),
@@ -165,7 +163,6 @@ func recoveryWrap(
 			log.Printf("[%s] [%s] Panic - %s", strconv.Itoa(account.Id), account.Address(), err)
 			if maxPanics == 0 {
 				log.Printf("[%s] [%s] Fatal - too many panics", strconv.Itoa(account.Id), account.Address())
-				return
 			} else {
 				wg.Add(1)
 				go recoveryWrap(maxPanics-1, f, account, wg, dataset)

@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 )
 
 type BalanceData struct {
@@ -41,7 +42,7 @@ func BalanceOf(account *account.Account, collectionAddress string, tokenId int) 
 	}
 	transport := http.Transport{}
 	transport.Proxy = http.ProxyURL(proxyUrl)
-	proxyClient := &http.Client{Transport: &transport}
+	proxyClient := &http.Client{Transport: &transport, Timeout: 5 * time.Second}
 
 	balanceResponse, err := proxyClient.Get(urlBalance)
 	if err != nil && balanceResponse.StatusCode != http.StatusOK {
@@ -65,8 +66,8 @@ func Mint(account *account.Account, contractAddress string, collectionAddress st
 			big.NewInt(1),
 			common.HexToAddress(collectionAddress),
 			big.NewInt(int64(tokenId)),
-			common.HexToAddress("0x0000000000000000000000000000000000000000"),
-			"")
+			common.HexToAddress(minterReferal),
+			comment)
 
 		if err != nil {
 			panic(fmt.Sprintf("Tx error: %s", err))
