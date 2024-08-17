@@ -7,6 +7,7 @@ import (
 	"base/contracts/coinbaseone"
 	"base/contracts/olympic"
 	ser "base/contracts/seasonal_erosion_relic"
+	"base/contracts/thirdweb"
 	"base/contracts/zora/zorafirst"
 	"base/contracts/zora/zorasecond"
 	"base/helpers"
@@ -212,6 +213,38 @@ func main() {
 		{
 			Title:  "Mint Coinbase - Consolation of Chroma Convergence",
 			Module: coinbaseforge.MintConsolationOfChromaConvergence,
+		},
+		{
+			Title:  "Mint Coinbase - Strut",
+			Module: coinbaseforge.MintStrut,
+		},
+		{
+			Title:  "Mint Coinbase - STIX",
+			Module: thirdweb.MintStix,
+		},
+		{
+			Title:  "Mint Coinbase - Base NFT",
+			Module: coinbaseforge.MintBaseNft,
+		},
+		{
+			Title:  "Mint Coinbase - Toshi Onchain Summer",
+			Module: coinbaseforge.MintToshiOnchainSummer,
+		},
+		{
+			Title:  "Mint Coinbase - ᐊᔮᑎᓯᐏᐣayâtisiwin",
+			Module: coinbaseforge.Mintᐊᔮᑎᓯᐏᐣayâtisiwin,
+		},
+		{
+			Title:  "Mint Coinbase - Nounisvary",
+			Module: coinbaseforge.MintNounisvary,
+		},
+		{
+			Title:  "Mint Coinbase - Summer Serenity",
+			Module: coinbaseforge.MintSummerSerenity,
+		},
+		{
+			Title:  "Mint Coinbase - Think Big",
+			Module: coinbaseforge.MintThinkBig,
 		},
 	}
 
