@@ -8,3 +8,4 @@ output.json
 accounts.csv
 .*exe
 /base-arm64
+/base-amd64
