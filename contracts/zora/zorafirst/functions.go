@@ -100,3 +100,15 @@ func MintEicSummer(account *account.Account) {
 		"",
 	)
 }
+
+func MintSummerSerenity(account *account.Account) {
+	Mint(
+		account,
+		"0x777777722D078c97c6ad07d9f36801e653E356Ae",
+		"0x310D51391955B6ffD7d8aFbb5981dcFe0F87ce6a",
+		111000000000000,
+		1,
+		"0x0000000000000000000000000000000000000000",
+		"",
+	)
+}

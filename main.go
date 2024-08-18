@@ -240,7 +240,7 @@ func main() {
 		},
 		{
 			Title:  "Mint Coinbase - Summer Serenity",
-			Module: coinbaseforge.MintSummerSerenity,
+			Module: zorafirst.MintSummerSerenity,
 		},
 		{
 			Title:  "Mint Coinbase - Think Big",

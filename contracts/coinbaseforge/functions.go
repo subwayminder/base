@@ -82,10 +82,6 @@ func MintNounisvary(account *account.Account) {
 	MintWithComment(account, "0xC8f93Ce7A12960466a2e13E70dE5CA41B652e4E6", 100000000000000, 1, "")
 }
 
-func MintSummerSerenity(account *account.Account) {
-	MintWithComment(account, "0x777777722D078c97c6ad07d9f36801e653E356Ae", 100000000000000, 1, "")
-}
-
 func MintThinkBig(account *account.Account) {
 	MintWithComment(account, "0x752d593b3B8aD1c5d827F5B9AA9b653eE7134ea0", 100000000000000, 1, "")
 }
