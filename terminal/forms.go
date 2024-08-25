@@ -16,7 +16,7 @@ func ChooseModule(dataset *helpers.AppDataset, modules []helpers.ModuleList) {
 	for _, module := range modules {
 		list.AddItem(module.Title, "", '*', func() {
 			app.Stop()
-			dataset.Module = module.Module
+			dataset.Module = module
 		})
 	}
 
@@ -41,7 +41,7 @@ func ChooseModulesForm(dataset *helpers.AppDataset, modules []helpers.ModuleList
 			index := (i-1)*10 + k
 			form.AddCheckbox(module.Title, false, func(checked bool) {
 				if checked {
-					dataset.Modules[index] = module.Module
+					dataset.Modules[index] = module
 				} else {
 					delete(dataset.Modules, index)
 				}

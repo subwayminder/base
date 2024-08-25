@@ -3,12 +3,17 @@ package account
 import (
 	"context"
 	"crypto/ecdsa"
+	"encoding/json"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"io"
+	"log"
 	"math/big"
+	"net/http"
+	"strings"
 )
 
 type Account struct {
@@ -18,6 +23,11 @@ type Account struct {
 	ChainId    *big.Int
 	Proxy      string
 	Active     bool
+}
+
+type ClaimResponseData struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
 }
 
 func Client(rpc string) (client *ethclient.Client, chainId *big.Int) {
@@ -66,6 +76,44 @@ func (account *Account) Gas() (gasPrice *big.Int) {
 		panic(err)
 	}
 	return gasPrice
+}
+
+func (account *Account) ClaimBadge(badgeId string) (err error) {
+	if badgeId == "" {
+		return nil
+	}
+	url := "https://basehunt.xyz/api/challenges/complete"
+	method := "POST"
+
+	payload := strings.NewReader(fmt.Sprintf(`{
+		"gameId": 2,
+		"userAddress": "%s",
+		"challengeId": "%s"
+	}`, account.Address().String(), badgeId))
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	req.Header.Add("Content-Type", "application/json")
+
+	res, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer res.Body.Close()
+
+	body, err := io.ReadAll(res.Body)
+	var claimResponseBody ClaimResponseData
+	if err := json.Unmarshal(body, &claimResponseBody); err != nil {
+		log.Printf(fmt.Sprintf("Response - %s", string(body)))
+		panic(fmt.Sprintf("Can not unmarshal JSON - %s", err))
+	}
+	log.Printf(fmt.Sprintf("Result - %s", string(body)))
+	return nil
 }
 
 func (account *Account) TxData(value int64) (auth *bind.TransactOpts) {

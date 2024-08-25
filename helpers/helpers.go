@@ -10,8 +10,6 @@ import (
 	"log"
 	"math/rand"
 	"os"
-	"reflect"
-	"runtime"
 	"strconv"
 	"sync"
 	"time"
@@ -23,13 +21,18 @@ type AppDataset struct {
 	MaxSleepInSeconds       int
 	MinModuleSleepInSeconds int
 	MaxModuleSleepInSeconds int
-	Module                  func(account *accpkg.Account)
-	Modules                 map[int]func(account *accpkg.Account)
+	Module                  ModuleList
+	Modules                 map[int]ModuleList
+}
+
+type ModuleUnit struct {
+	BadgeId  string
+	Function func(account *accpkg.Account, badgeId string)
 }
 
 type ModuleList struct {
 	Title  string
-	Module func(account *accpkg.Account)
+	Module ModuleUnit
 }
 
 func LoadPrivateKey(privateKeyHex string) (privateKey *ecdsa.PrivateKey) {
@@ -91,6 +94,13 @@ func LoadAccounts(filename string, rpc string) (accounts []accpkg.Account) {
 	return accounts
 }
 
+func ClaimBadge(account *accpkg.Account, badgeId string) {
+	err := account.ClaimBadge(badgeId)
+	if err != nil {
+		log.Printf("[%s] [%s] Claim Badge error - %s", strconv.Itoa(account.Id), account.Address(), err)
+	}
+}
+
 func RunAccountsModules(dataset AppDataset, accounts []accpkg.Account) {
 	var wg sync.WaitGroup
 	for k, account := range accounts {
@@ -121,10 +131,12 @@ func RunAccountModules(dataset AppDataset, account accpkg.Account, accountWg *sy
 				rand.Intn(dataset.MaxModuleSleepInSeconds-dataset.MinModuleSleepInSeconds)+dataset.MinModuleSleepInSeconds) * time.Second)
 		}
 		log.Printf("[%s] [%s] - %s started",
-			strconv.Itoa(account.Id), account.Address(),
-			runtime.FuncForPC(reflect.ValueOf(module).Pointer()).Name())
+			strconv.Itoa(account.Id),
+			account.Address(),
+			module.Title,
+		)
 		wg.Add(1)
-		go recoveryWrap(dataset.MaxRetries, module, &account, &wg, dataset)
+		go recoveryWrap(dataset.MaxRetries, module.Module, &account, &wg, dataset)
 	}
 	wg.Wait()
 }
@@ -145,14 +157,14 @@ func RunModuleLoop(dataset AppDataset, accounts []accpkg.Account, moduleWg *sync
 		}
 		log.Printf("[%s] [%s] Mint started", strconv.Itoa(account.Id), account.Address())
 		wg.Add(1)
-		go recoveryWrap(dataset.MaxRetries, dataset.Module, &account, &wg, dataset)
+		go recoveryWrap(dataset.MaxRetries, dataset.Module.Module, &account, &wg, dataset)
 	}
 	wg.Wait()
 }
 
 func recoveryWrap(
 	maxPanics int,
-	f func(account *accpkg.Account),
+	module ModuleUnit,
 	account *accpkg.Account,
 	wg *sync.WaitGroup,
 	dataset AppDataset) {
@@ -165,9 +177,9 @@ func recoveryWrap(
 				log.Printf("[%s] [%s] Fatal - too many panics", strconv.Itoa(account.Id), account.Address())
 			} else {
 				wg.Add(1)
-				go recoveryWrap(maxPanics-1, f, account, wg, dataset)
+				go recoveryWrap(maxPanics-1, module, account, wg, dataset)
 			}
 		}
 	}()
-	f(account)
+	module.Function(account, module.BadgeId)
 }

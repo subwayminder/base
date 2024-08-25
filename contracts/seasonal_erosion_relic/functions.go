@@ -9,6 +9,7 @@ import (
 	"log"
 	"math/big"
 	"strconv"
+	"time"
 )
 
 func getInstance(client *ethclient.Client) (instance *SeasonalErosionRelic) {
@@ -30,7 +31,7 @@ func BalanceOf(account *account.Account) *big.Int {
 	return balance
 }
 
-func MintSeasonalErosion(account *account.Account) {
+func MintSeasonalErosion(account *account.Account, badgeId string) {
 	instance := getInstance(account.Client)
 	balance := BalanceOf(account)
 	if balance.Int64() == int64(0) {
@@ -40,6 +41,11 @@ func MintSeasonalErosion(account *account.Account) {
 			panic(err)
 		}
 		log.Printf("[%s] [%s] Tx is sent: %s", strconv.Itoa(account.Id), account.Address(), tx.Hash().Hex())
+		time.Sleep(3 * time.Second)
+		err = account.ClaimBadge(badgeId)
+		if err != nil {
+			log.Printf("[%s] [%s] Claim Badge error - %s", strconv.Itoa(account.Id), account.Address(), err)
+		}
 	} else {
 		log.Printf("[%s] [%s] Balance is %s", strconv.Itoa(account.Id), account.Address(), balance)
 	}

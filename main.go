@@ -1,7 +1,6 @@
 package main
 
 import (
-	"base/account"
 	_ "base/account"
 	"base/contracts/coinbaseforge"
 	"base/contracts/coinbaseone"
@@ -16,235 +15,496 @@ import (
 )
 
 func main() {
-	var modules []helpers.ModuleList
-	modules = []helpers.ModuleList{
+	modules := []helpers.ModuleList{
 		{
-			Title:  "Mint seasonal erosion relic",
-			Module: ser.MintSeasonalErosion,
+			Title: "Mint seasonal erosion relic",
+			Module: helpers.ModuleUnit{
+				Function: ser.MintSeasonalErosion,
+				BadgeId:  "",
+			},
 		},
 		{
-			Title:  "Mint Olympic relic",
-			Module: olympic.MintOlympic,
+			Title: "Mint Olympic relic",
+			Module: helpers.ModuleUnit{
+				Function: olympic.MintOlympic,
+				BadgeId:  "",
+			},
 		},
 		{
-			Title:  "Mint HBT",
-			Module: coinbaseone.MintHbt,
+			Title: "Mint HBT",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintHbt,
+				BadgeId:  "1pjoNf5onjgsi7r9fWp3ob",
+			},
 		},
 		{
-			Title:  "Mint Celebrating Ethereum",
-			Module: coinbaseone.MintCelebratingEth,
+			Title: "Mint Celebrating Ethereum",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintCelebratingEth,
+				BadgeId:  "5e383RWcRtGAwGUorkGiYC",
+			},
 		},
 		{
-			Title:  "Mint Eurc eth",
-			Module: coinbaseone.MintEurcEth,
+			Title: "Mint Eurc eth",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintEurcEth,
+				BadgeId:  "1iZiHPbqaIGW5F08bCit6J",
+			},
 		},
 		{
-			Title:  "Mint Eth can't stop",
-			Module: coinbaseone.MintEthCantStop,
+			Title: "Mint Eth can't stop",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintEthCantStop,
+				BadgeId:  "ocsChallenge_c1de2373-35ad-4f3c-ab18-4dfadf15754d",
+			},
 		},
 		{
-			Title:  "Mint Eth Breaking Through",
-			Module: coinbaseone.MintEthBreakingThrough,
+			Title: "Mint Eth Breaking Through",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintEthBreakingThrough,
+				BadgeId:  "78AUXYw8UCyFUPE2zy9yMZ",
+			},
 		},
 		{
-			Title:  "Mint Post eth era",
-			Module: coinbaseone.MintPostEthEra,
+			Title: "Mint Post eth era",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintPostEthEra,
+				BadgeId:  "ocsChallenge_65c17605-e085-4528-b4f1-76ce5f48da56",
+			},
 		},
 		{
-			Title:  "Mint Eth etf",
-			Module: coinbaseone.MintEthEtf,
+			Title: "Mint Eth etf",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintEthEtf,
+				BadgeId:  "ocsChallenge_ee0cf23e-74a1-4bb3-badf-037a6bbf35e8",
+			},
 		},
 		{
-			Title:  "Mint Ethfereum",
-			Module: coinbaseone.MintEtfereum,
+			Title: "Mint Ethfereum",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintEtfereum,
+				BadgeId:  "ocsChallenge_eba9e6f0-b7b6-4d18-8b99-a64aea045117",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Nouns Machine",
-			Module: coinbaseone.MintNounsMachine,
+			Title: "Mint Coinbase - Nouns Machine",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintNounsMachine,
+				BadgeId:  "7mRx7h33KuMmTbus0Bv4AE",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Laser Nouns",
-			Module: coinbaseone.MintLaserNouns,
+			Title: "Mint Coinbase - Laser Nouns",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintLaserNouns,
+				BadgeId:  "ocsChallenge_fe16c31b-4c59-45d8-9431-8276f835cb16",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Celebrating nonce",
-			Module: coinbaseone.MintCelebratingNonce,
+			Title: "Mint Coinbase - Celebrating nonce",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintCelebratingNonce,
+				BadgeId:  "6VA9MQosJnPcCwEeNkNVsW",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Coffee days",
-			Module: coinbaseone.MintCoffeeDays,
+			Title: "Mint Coinbase - Coffee days",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintCoffeeDays,
+				BadgeId:  "ocsChallenge_9142cba1-ec12-4ee8-915e-7976536908cd",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Noun moon",
-			Module: coinbaseone.MintNounMoon,
+			Title: "Mint Coinbase - Noun moon",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintNounMoon,
+				BadgeId:  "ocsChallenge_d9e15d6a-3c6e-4585-91ff-ba9e157f3789",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Happy born day",
-			Module: coinbaseone.MintHappyBornDay,
+			Title: "Mint Coinbase - Happy born day",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintHappyBornDay,
+				BadgeId:  "2U6YRYo55Zgfcxull5C1Xn",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Nounify the rockies",
-			Module: coinbaseone.MintNounifyTheRockies,
+			Title: "Mint Coinbase - Nounify the rockies",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintNounifyTheRockies,
+				BadgeId:  "21pui4pvJ0h6YA8EAlvjqh",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Nouns forever",
-			Module: coinbaseone.MintNounsForever,
+			Title: "Mint Coinbase - Nouns forever",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintNounsForever,
+				BadgeId:  "3M9bT5pBKJE6jgolwMFsJU",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Happy nouniversary",
-			Module: coinbaseone.MintHappyNouniversary,
+			Title: "Mint Coinbase - Happy nouniversary",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintHappyNouniversary,
+				BadgeId:  "71QheN8IVzfyoVtE8oeHNU",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Nounish vibes",
-			Module: coinbaseone.MintNounishVibes,
+			Title: "Mint Coinbase - Nounish vibes",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintNounishVibes,
+				BadgeId:  "2r8tpvuVPkYIuhAWSoMYY1",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Hand of Nouns",
-			Module: coinbaseone.MintHandOfNouns,
+			Title: "Mint Coinbase - Hand of Nouns",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintHandOfNouns,
+				BadgeId:  "2qOcpUCs12XwgLUpoQQgYTT",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Nouns everywhere",
-			Module: coinbaseone.MintNounsEverywhere,
+			Title: "Mint Coinbase - Nouns everywhere",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintNounsEverywhere,
+				BadgeId:  "ocsChallenge_d122a59b-6a04-4949-9cdb-b9262e843aa6",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Base gods and miggs",
-			Module: coinbaseone.MintBaseGodsAndMiggs,
+			Title: "Mint Coinbase - Base gods and miggs",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintBaseGodsAndMiggs,
+				BadgeId:  "1eeRIVPiOVBJ3rlM5sGnpx",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Celebrating of end of nouns",
-			Module: coinbaseone.MintCelebratingOfEndOfNouns,
+			Title: "Mint Coinbase - Celebrating of end of nouns",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintCelebratingOfEndOfNouns,
+				BadgeId:  "ocsChallenge_15259510-7040-4f16-bdfa-f137846b546c",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Third nouniversary",
-			Module: coinbaseone.MintThirdNouniversary,
+			Title: "Mint Coinbase - Third nouniversary",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintThirdNouniversary,
+				BadgeId:  "7ktuPuO5kUtvQmvzd4T5r3",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Happy nouniversary",
-			Module: coinbaseone.MintHappyNouniversaryTwo,
+			Title: "Mint Coinbase - Happy nouniversary",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseone.MintHappyNouniversaryTwo,
+				BadgeId:  "44wp1P8LSnwkPSz7Ft3q78",
+			},
 		},
 		{
-			Title:  "Mint Zora - EIC summer",
-			Module: zorafirst.MintEicSummer,
+			Title: "Mint Zora - EIC summer",
+			Module: helpers.ModuleUnit{
+				Function: zorafirst.MintEicSummer,
+				BadgeId:  "ocsChallenge_1287a985-e4b1-4f30-b508-306c4d109832",
+			},
 		},
 		{
-			Title:  "Mint Zora - One Year On Base",
-			Module: zorafirst.MintOneYearOnBase,
+			Title: "Mint Zora - One Year On Base",
+			Module: helpers.ModuleUnit{
+				Function: zorafirst.MintOneYearOnBase,
+				BadgeId:  "TqnsSrVTggFzdu9vFuSju",
+			},
 		},
 		{
-			Title:  "Mint Zora - Higher",
-			Module: zorasecond.MintHigher,
+			Title: "Mint Zora - Higher",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintHigher,
+				BadgeId:  "ocsChallenge_0c81b9f8-4cd0-4ad1-8eed-692afb988995",
+			},
 		},
 		{
-			Title:  "Mint Zora - Bouquet",
-			Module: zorasecond.MintBouquet,
+			Title: "Mint Zora - Bouquet",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintBouquet,
+				BadgeId:  "ocsChallenge_1d2ae291-a51e-44e9-ab92-bd2540262b1b",
+			},
 		},
 		{
-			Title:  "Mint Zora - Hodlhq",
-			Module: zorasecond.MintHodlhq,
+			Title: "Mint Zora - Hodlhq",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintHodlhq,
+				BadgeId:  "ocsChallenge_851731af-e339-4a5e-8aa2-60bfca2079bf",
+			},
 		},
 		{
-			Title:  "Mint Zora - Fullmetaldroid",
-			Module: zorasecond.MintFullmetaldroid,
+			Title: "Mint Zora - Fullmetaldroid",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintFullmetaldroid,
+				BadgeId:  "ocsChallenge_7ef196df-e2cf-4d56-b381-09af0f1984e2",
+			},
 		},
 		{
-			Title:  "Mint Zora - Essence",
-			Module: zorasecond.MintEssence,
+			Title: "Mint Zora - Essence",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintEssence,
+				BadgeId:  "ocsChallenge_092780c6-704c-4ec9-8986-3049cb80acef",
+			},
 		},
 		{
-			Title:  "Mint Zora - Base Summer Genesis",
-			Module: zorasecond.MintBaseSummerGenesis,
+			Title: "Mint Zora - Base Summer Genesis",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintBaseSummerGenesis,
+				BadgeId:  "",
+			},
 		},
 		{
-			Title:  "Mint Zora - Base Onchainomics",
-			Module: zorasecond.MintOnchainomics,
+			Title: "Mint Zora - Base Onchainomics",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintOnchainomics,
+				BadgeId:  "ocsChallenge_fc73d959-f1d6-4630-ab10-8d697678ff0c",
+			},
 		},
 		{
-			Title:  "Mint Zora - Stay Based",
-			Module: zorasecond.MintStayBased,
+			Title: "Mint Zora - Stay Based",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintStayBased,
+				BadgeId:  "ocsChallenge_ba17be7a-b8f3-4213-aa99-d07d8550bff8",
+			},
 		},
 		{
-			Title:  "Mint Zora - Palomar Group Archive",
-			Module: zorasecond.MintPalomarGroupArchive,
+			Title: "Mint Zora - Palomar Group Archive",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintPalomarGroupArchive,
+				BadgeId:  "ocsChallenge_1c4878b7-f846-44cd-a2fe-5c91b1e27cd6",
+			},
 		},
 		{
-			Title:  "Mint Zora - Building Onchain Podcast",
-			Module: zorasecond.MintBuildingOnchainPodcast,
+			Title: "Mint Zora - Building Onchain Podcast",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintBuildingOnchainPodcast,
+				BadgeId:  "ocsChallenge_11b6a5a1-7180-450b-8c7c-77d37560dd10",
+			},
 		},
 		{
-			Title:  "Mint Zora - Onchainomics Essay",
-			Module: zorasecond.MintOnchainomicsEssay,
+			Title: "Mint Zora - Onchainomics Essay",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintOnchainomicsEssay,
+				BadgeId:  "ocsChallenge_d9d8342f-99b1-4e55-98f4-9bb4e0a71ca1",
+			},
 		},
 		{
-			Title:  "Mint Zora - Based On Happines",
-			Module: zorasecond.MintBasedOnHappines,
+			Title: "Mint Zora - Based On Happines",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintBasedOnHappines,
+				BadgeId:  "ocsChallenge_546d588b-9daa-4e13-bbeb-d1ae9646179e",
+			},
 		},
 		{
-			Title:  "Mint Zora - Summer Basecamp",
-			Module: zorasecond.MintSummerBasecamp,
+			Title: "Mint Zora - Summer Basecamp",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintSummerBasecamp,
+				BadgeId:  "ocsChallenge_15b1524f-de7e-43d5-a9cb-03c9f24d0881",
+			},
 		},
 		{
-			Title:  "Mint Zora - Persona On Base",
-			Module: zorasecond.MintPersonaOnBase,
+			Title: "Mint Zora - Persona On Base",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintPersonaOnBase,
+				BadgeId:  "",
+			},
 		},
 		{
-			Title:  "Mint Zora - Girl Onchain",
-			Module: zorasecond.MintGirlOnchain,
+			Title: "Mint Zora - Girl Onchain",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintGirlOnchain,
+				BadgeId:  "ocsChallenge_475b4248-2c7d-45fb-a062-45d6eb18fd67",
+			},
 		},
 		{
-			Title:  "Mint Zora - Zeropod",
-			Module: zorasecond.MintZeropod,
+			Title: "Mint Zora - Zeropod",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintZeropod,
+				BadgeId:  "ocsChallenge_acbbf04b-d703-4ce5-b1ed-32bb461168c7",
+			},
 		},
 		{
-			Title:  "Mint Zora - Spiral 360",
-			Module: zorasecond.MintSpiral360,
+			Title: "Mint Zora - Spiral 360",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintSpiral360,
+				BadgeId:  "ocsChallenge_277d663c-ceb5-424c-ba69-b96334ff5516",
+			},
 		},
 		{
-			Title:  "Mint Zora - Memloop",
-			Module: zorasecond.MintMemloop,
+			Title: "Mint Zora - Memloop",
+			Module: helpers.ModuleUnit{
+				Function: zorasecond.MintMemloop,
+				BadgeId:  "ocsChallenge_8995cf46-b23e-4e46-afae-062655648951",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Nouns summer",
-			Module: coinbaseforge.MintNounsSummer,
+			Title: "Mint Coinbase - Nouns summer",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintNounsSummer,
+				BadgeId:  "TqnsSrVTggFzdu9vFuSju",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Walking On Sunshine",
-			Module: coinbaseforge.MintWalkingOnSunshine,
+			Title: "Mint Coinbase - Walking On Sunshine",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintWalkingOnSunshine,
+				BadgeId:  "22B38pVH5SN5yAiW6HYdNa",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Consolation of Chroma Convergence",
-			Module: coinbaseforge.MintConsolationOfChromaConvergence,
+			Title: "Mint Coinbase - Consolation of Chroma Convergence",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintConsolationOfChromaConvergence,
+				BadgeId:  "6FfxTruNSVDFLtvD3hb9sT",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Strut",
-			Module: coinbaseforge.MintStrut,
+			Title: "Mint Coinbase - Strut",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintStrut,
+				BadgeId:  "5c3PqZ2EGVbzQ2CQXL1vWK",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - STIX",
-			Module: thirdweb.MintStix,
+			Title: "Mint Coinbase - STIX",
+			Module: helpers.ModuleUnit{
+				Function: thirdweb.MintStix,
+				BadgeId:  "ocsChallenge_bd5208b5-ff1e-4f5b-8522-c4d4ebb795b7",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Base NFT",
-			Module: coinbaseforge.MintBaseNft,
+			Title: "Mint Coinbase - Base NFT",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintBaseNft,
+				BadgeId:  "6UuHdstl9MRFd4cgFf15kk",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Toshi Onchain Summer",
-			Module: coinbaseforge.MintToshiOnchainSummer,
+			Title: "Mint Coinbase - Toshi Onchain Summer",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintToshiOnchainSummer,
+				BadgeId:  "4g9y1NVvIxiOCSeGvPLmJS",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - ᐊᔮᑎᓯᐏᐣayâtisiwin",
-			Module: coinbaseforge.Mintᐊᔮᑎᓯᐏᐣayâtisiwin,
+			Title: "Mint Coinbase - ᐊᔮᑎᓯᐏᐣayâtisiwin",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.Mintᐊᔮᑎᓯᐏᐣayâtisiwin,
+				BadgeId:  "1BWyKWI2UZHnOEw8E4hpS5",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Nounisvary",
-			Module: coinbaseforge.MintNounisvary,
+			Title: "Mint Coinbase - Nounisvary",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintNounisvary,
+				BadgeId:  "ocsChallenge_578c4c33-4506-4604-8359-ac0b43a3809c",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Summer Serenity",
-			Module: zorafirst.MintSummerSerenity,
+			Title: "Mint Coinbase - Summer Serenity",
+			Module: helpers.ModuleUnit{
+				Function: zorafirst.MintSummerSerenity,
+				BadgeId:  "ocsChallenge_e490f19f-1923-479d-83b8-25ecdc3b8c4a",
+			},
 		},
 		{
-			Title:  "Mint Coinbase - Think Big",
-			Module: coinbaseforge.MintThinkBig,
+			Title: "Mint Coinbase - Think Big",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintThinkBig,
+				BadgeId:  "3EOQYszODyvZvbQMoKPoDO",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Think Big",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintThinkBig,
+				BadgeId:  "3EOQYszODyvZvbQMoKPoDO",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Whatchu Lookin' At?",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintWhatchuLookingAt,
+				BadgeId:  "39XYCR1jsdPwnoFEpwCwhD",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Stand with Crypto Pizza?",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintStandWithPizza,
+				BadgeId:  "1zbecUKJMKwyYoKOn2OV5n",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Endaoment X SWC Shield",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintEndaoment,
+				BadgeId:  "359X8U2xzQmVIQRe7xSFk9",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Stand with Crypto Pizza 2",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintStandWithCrypto,
+				BadgeId:  "3ofLIMuInVt5sKkQOtLWp0",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Stand With Crypto | Song A Day #5714",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintStandWithCryptoSongADay,
+				BadgeId:  "5Hyw2HMBfOBFDvCBkvdVmX",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Espresso and Milk | Coffee Days 2024",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintEspressoAndMilk,
+				BadgeId:  "ocsChallenge_668763d8-477c-444b-91e1-346a69a8146d",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Base Turns One",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintBaseTurnsOne,
+				BadgeId:  "ocsChallenge_3809bf6d-a2d1-4e15-84e7-74beac310661",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Toshi Vibe",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintToshiVibe,
+				BadgeId:  "3WE9nylUC2bMHz9c6hxFnL",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Toshi Chess",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintToshiChess,
+				BadgeId:  "1HMONONDaMukjieAOD3PHQ",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Crypto with bloom",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintCryptoWillBloom,
+				BadgeId:  "S3DyUSaz6mYehsypyOqPD",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Introducing: Coinbase Wallet web app",
+			Module: helpers.ModuleUnit{
+				Function: thirdweb.MintIntroductionCoinbaseWallet,
+				BadgeId:  "78zcHkWSABcPWMoacVI9Vs",
+			},
+		},
+		{
+			Title: "Mint Coinbase - What if we added a Stand With Crypto Shield....",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintCryptoShield,
+				BadgeId:  "71fCEn2cIwqXqLE6wYxGl0",
+			},
 		},
 	}
 
@@ -262,8 +522,8 @@ func main() {
 		MaxRetries:        terminal.InputNumber("Input max retries: "),
 		MinSleepInSeconds: terminal.InputNumber("Input min sleep seconds between accounts: "),
 		MaxSleepInSeconds: terminal.InputNumber("Input max sleep seconds between accounts: "),
-		Module:            nil,
-		Modules:           make(map[int]func(account *account.Account)),
+		Module:            helpers.ModuleList{},
+		Modules:           make(map[int]helpers.ModuleList),
 	}
 	app := tview.NewApplication()
 	list := tview.NewList()
@@ -278,6 +538,16 @@ func main() {
 			dataset.MinModuleSleepInSeconds = terminal.InputNumber("Input min sleep seconds between modules: ")
 			dataset.MaxModuleSleepInSeconds = terminal.InputNumber("Input max sleep seconds between modules: ")
 			terminal.ChooseModulesForm(&dataset, modules)
+			helpers.RunAccountsModules(dataset, accounts)
+		}).
+		AddItem("Claim badges", "", '3', func() {
+			app.Stop()
+			dataset.MinModuleSleepInSeconds = terminal.InputNumber("Input min sleep seconds between modules: ")
+			dataset.MaxModuleSleepInSeconds = terminal.InputNumber("Input max sleep seconds between modules: ")
+			for i, module := range modules {
+				module.Module.Function = helpers.ClaimBadge
+				dataset.Modules[i] = module
+			}
 			helpers.RunAccountsModules(dataset, accounts)
 		}).
 		AddItem("Quit", "Press to exit", 'q', func() {

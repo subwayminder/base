@@ -9,7 +9,9 @@ import (
 	"log"
 	"math/big"
 	"net/http"
+	"strconv"
 	"strings"
+	"time"
 )
 
 type CallData struct {
@@ -66,7 +68,7 @@ func getData(account *account.Account) (data string) {
 	return dataResponseBody.CallData.Data
 }
 
-func MintTeamLiquid(account *account.Account) {
+func MintTeamLiquid(account *account.Account, badgeId string) {
 	instance := getInstance(account.Client)
 	txData := account.TxData(0)
 	var infos []ReservoirV601ExecutionInfo
@@ -80,4 +82,9 @@ func MintTeamLiquid(account *account.Account) {
 		panic(err)
 	}
 	log.Printf("[%s] Tx is sent: %s", account.Address(), tx.Hash().Hex())
+	time.Sleep(3 * time.Second)
+	err = account.ClaimBadge(badgeId)
+	if err != nil {
+		log.Printf("[%s] [%s] Claim Badge error - %s", strconv.Itoa(account.Id), account.Address(), err)
+	}
 }

@@ -77,7 +77,7 @@ func BalanceOf(account *account.Account) *big.Int {
 	return balance
 }
 
-func MintOlympic(account *account.Account) {
+func MintOlympic(account *account.Account, badgeId string) {
 	instance := getInstance(account.Client)
 	balance := BalanceOf(account)
 	if balance.Int64() == int64(0) {
@@ -89,6 +89,13 @@ func MintOlympic(account *account.Account) {
 			log.Fatal(err)
 		}
 		log.Printf("[%s] [%s] Tx is sent: %s", strconv.Itoa(account.Id), account.Address(), tx.Hash().Hex())
+		time.Sleep(3 * time.Second)
+		err = account.ClaimBadge(badgeId)
+		if err != nil {
+			log.Printf("[%s] [%s] Claim Badge error - %s", strconv.Itoa(account.Id), account.Address(), err)
+		} else {
+			log.Printf("[%s] [%s] Claim Badge success", strconv.Itoa(account.Id), account.Address())
+		}
 	} else {
 		log.Printf("[%s] [%s] Already minted. Balance is %s", strconv.Itoa(account.Id), account.Address(), balance)
 	}
