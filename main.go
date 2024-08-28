@@ -506,6 +506,97 @@ func main() {
 				BadgeId:  "71fCEn2cIwqXqLE6wYxGl0",
 			},
 		},
+		{
+			Title: "Mint Coinbase - Mint the vision",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintTheVision,
+				BadgeId:  "3fYDO7ZCCl91Tg7u6cMHBa",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Stand With Crypto Shield Rune",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintCryptoShieldRune,
+				BadgeId:  "1FH5jNuTVIRrPBUNtKrFtQ",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Shielding the wonder",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintShieldingTheWonder,
+				BadgeId:  "4EHmwNf6hrcTFnume2AUhv",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Live and Let Live!",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintLiveAndLetLive,
+				BadgeId:  "4MMQPGoZviSqLoJgaVDY05",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Satoshi's Summer Riddle Starter Pack NFT",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintSatoshiSummerRiddle,
+				BadgeId:  "6al1rUlphrMNYqQRbG9l83",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Earth Stands with Crypto",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintEarthStandsWithCrypto,
+				BadgeId:  "7JZn2HJuvLZRoE8R8a8OBp",
+			},
+		},
+		{
+			Title: "Mint Coinbase - ⌐◨-◨ Stand With Crypto",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintGlassesStandsWithCrypto,
+				BadgeId:  "4JS8wKnPtZ0lE34C5crIUk",
+			},
+		},
+		{
+			Title: "Mint Coinbase - en garde",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintEnGarde,
+				BadgeId:  "3wnaF1zwkxXMotK2grz0kO",
+			},
+		},
+		{
+			Title: "Mint Coinbase - duality in motion",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintDualityWithMotion,
+				BadgeId:  "3Po39fHlC66muE3X5IHNfs",
+			},
+		},
+		{
+			Title: "Mint Coinbase - The Creative Shield",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintCreativeShield,
+				BadgeId:  "6kv6tqF4mCQiGn5SQUwdps",
+			},
+		},
+		{
+			Title: "Mint Coinbase - we stand, we build",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintWeStandWeBuild,
+				BadgeId:  "43EAydXs7EVNGkR9UZ5JJH",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Toshi x SWC 3",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintToshixSwc,
+				BadgeId:  "1VaefmSAUYw5vW1lxc0Viq",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Crypto Vibe",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintCryptoVibe,
+				BadgeId:  "OE6zO6T5M3COHSFcIIvmA",
+			},
+		},
 	}
 
 	filename := terminal.Input("Enter a filename (default: accounts.csv): ")
@@ -544,7 +635,8 @@ func main() {
 			app.Stop()
 			dataset.MinModuleSleepInSeconds = terminal.InputNumber("Input min sleep seconds between modules: ")
 			dataset.MaxModuleSleepInSeconds = terminal.InputNumber("Input max sleep seconds between modules: ")
-			for i, module := range modules {
+			terminal.ChooseModulesForm(&dataset, modules)
+			for i, module := range dataset.Modules {
 				module.Module.Function = helpers.ClaimBadge
 				dataset.Modules[i] = module
 			}

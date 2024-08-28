@@ -286,3 +286,146 @@ func MintCryptoShield(account *account.Account, badgeId string) {
 		badgeId,
 	)
 }
+
+func MintTheVision(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x8605522B075aFeD48f9987E573E0AA8E572B8452",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintCryptoShieldRune(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x13fCcd944B1D88d0670cae18A00abD272256DDeE",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintShieldingTheWonder(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x6A3dA97Dc82c098038940Db5CB2Aa6B1541f2ebe",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintLiveAndLetLive(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x279dFFD2b14a4A60e266bEfb0D2c10E695D58113",
+		500000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintSatoshiSummerRiddle(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x24da42FF6C4A6d5a6dCd1BecB204Bf82EA91d7B0",
+		650000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintEarthStandsWithCrypto(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0xd1E1da0b62761b0df8135aE4e925052C8f618458",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintGlassesStandsWithCrypto(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x03c6eF731453bfEc65a800F83f026ad011D8Abec",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintEnGarde(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x1f006edBc0Bcc528A743ee7A53b5e3dD393A1Df6",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintDualityWithMotion(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x5b45498D20d24D9c6Da165eDcd0eBcE0636176Ae",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintCreativeShield(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x892Bc2468f20D40F4424eE6A504e354D9D7E1866",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintWeStandWeBuild(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0xEb9A3540E6A3dc31d982A47925d5831E02a3Fe1e",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintToshixSwc(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0xb620bEdCe2615A3F35273A08b3e45e3431229A60",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
+
+func MintCryptoVibe(account *account.Account, badgeId string) {
+	MintWithComment(
+		account,
+		"0x6a43B7e3ebFc915A8021dd05f07896bc092d1415",
+		100000000000000,
+		1,
+		"",
+		badgeId,
+	)
+}
