@@ -597,6 +597,62 @@ func main() {
 				BadgeId:  "OE6zO6T5M3COHSFcIIvmA",
 			},
 		},
+		{
+			Title: "Mint Coinbase - Let The Shield Shine",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintLetTheShieldShine,
+				BadgeId:  "7430li8iAyirOzGFhNbL3w",
+			},
+		},
+		{
+			Title: "Mint Coinbase - All for One",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintAllForOne,
+				BadgeId:  "6ENasd7Ikvs7VBlC02rsCg",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Let's Stand",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintLetsStand,
+				BadgeId:  "66QmTDpn63hpgrkVgRK0ve",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Forbes Web3 INSPIRE",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintForbesWeb3,
+				BadgeId:  "ocsChallenge_b3f47fc6-3649-4bad-9e10-7244fbe1d484",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Stand with Crypt",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintSWC,
+				BadgeId:  "ocsChallenge_44f5e933-8d23-4757-bbd4-06bf83f922a7",
+			},
+		},
+		{
+			Title: "Mint Coinbase - What if we added a Stand With Crypto Shield as a Head Trait in The Yellow Collective on Base?",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintWhatIfSWC,
+				BadgeId:  "71fCEn2cIwqXqLE6wYxGl0",
+			},
+		},
+		{
+			Title: "Mint Coinbase - Nature Stands with Crypto",
+			Module: helpers.ModuleUnit{
+				Function: coinbaseforge.MintNatureSWC,
+				BadgeId:  "ocsChallenge_7e798e08-31b7-4b8f-b948-7ac7c840ffd7",
+			},
+		},
+		{
+			Title: "Mint Coinbase(Reservoir Contract) - Buildation",
+			Module: helpers.ModuleUnit{
+				Function: thirdweb.MintBuildation,
+				BadgeId:  "",
+			},
+		},
 	}
 
 	filename := terminal.Input("Enter a filename (default: accounts.csv): ")

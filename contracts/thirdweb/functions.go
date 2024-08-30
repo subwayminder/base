@@ -9,7 +9,6 @@ import (
 	"log"
 	"math/big"
 	"strconv"
-	"time"
 )
 
 type claimPayload struct {
@@ -30,7 +29,7 @@ func getInstance(client *ethclient.Client, contractAddress string) (instance *Th
 	return instance
 }
 
-func BalanceOf(account *account.Account, contractAddress string) *big.Int {
+func balanceOf(account *account.Account, contractAddress string) *big.Int {
 	instance := getInstance(account.Client, contractAddress)
 	balance, err := instance.BalanceOf(&bind.CallOpts{}, account.Address())
 	if err != nil {
@@ -39,9 +38,9 @@ func BalanceOf(account *account.Account, contractAddress string) *big.Int {
 	return balance
 }
 
-func Mint(account *account.Account, contractAddress string, value int, payload claimPayload, badgeId string) {
+func claim(account *account.Account, contractAddress string, value int, payload claimPayload, badgeId string) {
 	instance := getInstance(account.Client, contractAddress)
-	balance := BalanceOf(account, contractAddress)
+	balance := balanceOf(account, contractAddress)
 	if balance.Int64() == int64(0) {
 		txData := account.TxData(int64(value))
 		tx, err := instance.Claim(
@@ -57,11 +56,6 @@ func Mint(account *account.Account, contractAddress string, value int, payload c
 			panic(fmt.Sprintf("Mint error - %s", err))
 		}
 		log.Printf("[%s] [%s] Tx is sent: %s", strconv.Itoa(account.Id), account.Address(), tx.Hash().Hex())
-		time.Sleep(3 * time.Second)
-		err = account.ClaimBadge(badgeId)
-		if err != nil {
-			log.Printf("[%s] [%s] Claim Badge error - %s", strconv.Itoa(account.Id), account.Address(), err)
-		}
 	} else {
 		log.Printf("[%s] [%s] Already minted. Balance is %s", strconv.Itoa(account.Id), account.Address(), balance)
 	}
@@ -81,7 +75,7 @@ func MintStix(account *account.Account, badgeId string) {
 		},
 		data: common.FromHex("0x"),
 	}
-	Mint(account, "0xa7891c87933BB99Db006b60D8Cb7cf68141B492f", 0, payload, badgeId)
+	claim(account, "0xa7891c87933BB99Db006b60D8Cb7cf68141B492f", 0, payload, badgeId)
 }
 
 func MintIntroductionCoinbaseWallet(account *account.Account, badgeId string) {
@@ -98,5 +92,22 @@ func MintIntroductionCoinbaseWallet(account *account.Account, badgeId string) {
 		},
 		data: common.FromHex("0x"),
 	}
-	Mint(account, "0x6B033e8199ce2E924813568B716378aA440F4C67", 100000000000000, payload, badgeId)
+	claim(account, "0x6B033e8199ce2E924813568B716378aA440F4C67", 100000000000000, payload, badgeId)
+}
+
+func MintBuildation(account *account.Account, badgeId string) {
+	proof := [][32]byte{[32]byte(common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000000"))}
+	payload := claimPayload{
+		quantity:      big.NewInt(1),
+		currency:      common.HexToAddress("0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"),
+		pricePerToken: big.NewInt(100000000000000),
+		allowListProof: IDropAllowlistProof{
+			Proof:                  proof,
+			QuantityLimitPerWallet: big.NewInt(1),
+			PricePerToken:          big.NewInt(100000000000000),
+			Currency:               common.HexToAddress("0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"),
+		},
+		data: common.FromHex("0x"),
+	}
+	claim(account, "0x0c45CA58cfA181b038E06dd65EAbBD1a68d3CcF3", 100000000000000, payload, badgeId)
 }
